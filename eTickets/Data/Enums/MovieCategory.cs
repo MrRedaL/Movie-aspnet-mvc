@@ -3,9 +3,9 @@
     public enum MovieCategory
     {
         Action,
+        Cartoon,
         Comedy,
-        Drama,
-        Documentary,
+        Drama,        
         Horror,
         Thriller
     }
