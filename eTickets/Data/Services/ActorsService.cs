@@ -12,21 +12,22 @@ namespace eTickets.Data.Services
             this.context = context;
         }
 
-        public async Task<IEnumerable<Actor>> GetAllActors()
+        public async Task<IEnumerable<Actor>> GetAllActorsAsync()
         {
             var allActors = await this.context.Actors.ToListAsync();
             return allActors;
         }
 
-        public Actor GetActorById(int id)
+        public async Task<Actor> GetActorByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var actor = await this.context.Actors.FirstOrDefaultAsync(x => x.Id == id);
+            return actor;
         }
 
-        public void AddActor(Actor actor)
+        public async Task AddActorAsync(Actor actor)
         {
-            this.context.Actors.Add(actor);
-            this.context.SaveChanges();
+            await this.context.Actors.AddAsync(actor);
+            await this.context.SaveChangesAsync();
         }
 
         public Actor UpdateActorById(int id, Actor newActor)
