@@ -5,8 +5,11 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 //Add SQL connection to the Context
-string connection = builder.Configuration.GetConnectionString("DefaultConnectionString");
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connection));
+string? connection = builder.Configuration.GetConnectionString("DefaultConnectionString");
+if (connection != null)
+{
+    builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connection));
+}
 
 //Services configuration
 builder.Services.AddScoped<IActorsService, ActorsService>();
