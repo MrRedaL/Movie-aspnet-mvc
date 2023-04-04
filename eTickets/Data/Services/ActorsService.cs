@@ -25,7 +25,8 @@ namespace eTickets.Data.Services
 
         public void AddActor(Actor actor)
         {
-            throw new NotImplementedException();
+            this.context.Actors.Add(actor);
+            this.context.SaveChanges();
         }
 
         public Actor UpdateActorById(int id, Actor newActor)
