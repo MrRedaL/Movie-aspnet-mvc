@@ -7,7 +7,7 @@ namespace eTickets.Data.Services
         Task<IEnumerable<Actor>> GetAllActorsAsync();
         Task<Actor> GetActorByIdAsync(int id);
         Task AddActorAsync(Actor actor);
-        Actor UpdateActorById(int id, Actor newActor);
+        Task<Actor> UpdateActorByIdAsync(int id, Actor newActor);
         void DeleteActorById(int id);
     }
 }
