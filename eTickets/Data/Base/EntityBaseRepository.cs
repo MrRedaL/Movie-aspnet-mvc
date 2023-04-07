@@ -1,30 +1,46 @@
-﻿namespace eTickets.Data.Base
+﻿using eTickets.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+
+namespace eTickets.Data.Base
 {
     public class EntityBaseRepository<T>: IEntityBaseRepository<T> where T: class, IEntityBase, new()
     {
-        public Task AddActorAsync(T entity)
+        private readonly AppDbContext context;
+        public EntityBaseRepository(AppDbContext context)
         {
-            throw new NotImplementedException();
+            this.context = context;
+        }
+                
+        public async Task AddAsync(T entity)
+        {
+            await this.context.Set<T>().AddAsync(entity);
+            await this.context.SaveChangesAsync();
         }
 
-        public Task DeleteActorByIdAsync(int id)
+        public async Task DeleteByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var entity = await this.context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
+            EntityEntry entityEntry = this.context.Entry<T>(entity);
+            entityEntry.State = EntityState.Deleted;
+            await this.context.SaveChangesAsync();
         }
 
-        public Task<T> GetActorByIdAsync(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await this.context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public Task<IEnumerable<T>> GetAllActorsAsync()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await this.context.Set<T>().ToListAsync();
         }
 
-        public Task<T> UpdateActorByIdAsync(int id, T entity)
+        public async Task UpdateByIdAsync(int id, T entity)
         {
-            throw new NotImplementedException();
+            EntityEntry entityEntry = this.context.Entry<T>(entity);
+            entityEntry.State = EntityState.Modified;
+            await this.context.SaveChangesAsync();
         }
     }
 }
