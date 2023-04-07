@@ -37,9 +37,11 @@ namespace eTickets.Data.Services
             return newActor;
         }
 
-        public void DeleteActorById(int id)
+        public async Task DeleteActorByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var actor = await this.context.Actors.FirstOrDefaultAsync(x => x.Id == id);
+            this.context.Actors.Remove(actor);
+            await this.context.SaveChangesAsync();
         }
     }
 }
