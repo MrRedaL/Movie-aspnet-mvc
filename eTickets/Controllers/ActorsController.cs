@@ -28,7 +28,7 @@ namespace eTickets.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([Bind("FullName,ProfilePictureUrl,Bio")] Actor actor)
+        public async Task<IActionResult> Create([Bind("ProfilePictureUrl,FullName,Bio")] Actor actor)
         {
             if (!ModelState.IsValid)
             {
