@@ -14,7 +14,7 @@ namespace eTickets.Data.Services
 
         public async Task<IEnumerable<Actor>> GetAllActorsAsync()
         {
-            var allActors = await this.context.Actors.ToListAsync();
+            var allActors = await this.context.Actors.OrderBy(n => n.FullName).ToListAsync();
             return allActors;
         }
 
