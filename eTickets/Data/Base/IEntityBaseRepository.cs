@@ -8,6 +8,7 @@ namespace eTickets.Data.Base
         Task AddAsync(T entity);
         Task DeleteByIdAsync(int id);
         Task<T> GetByIdAsync(int id);
+        Task<T> GetByIdAsync(int id, params Expression<Func<T, object>>[] includeProperties);
         Task<IEnumerable<T>> GetAllAsync();
         Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, object>>[] includeProperties);
         Task UpdateByIdAsync(int id, T entity);
