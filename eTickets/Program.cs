@@ -14,7 +14,7 @@ if (connection != null)
 //Services configuration
 builder.Services.AddScoped<IActorsService, ActorsService>();
 builder.Services.AddScoped<IProducersService, ProducersService>();
-builder.Services.AddScoped<ICinemasService, CinemaService>();
+builder.Services.AddScoped<ICinemasService, CinemasService>();
 builder.Services.AddControllersWithViews();
 
 
