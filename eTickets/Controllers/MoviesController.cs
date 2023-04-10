@@ -20,6 +20,15 @@ namespace eTickets.Controllers
             return View(allMovies);
         }
 
+        //Get: Movies/Create
+        public IActionResult Create()
+        {
+            ViewData["Welcome"] = "Welcome to our store";
+            ViewBag.Description = "This is the store description";
+            return View();
+        }
+
+
         //Get: Movies/Details/(id)
         public async Task<IActionResult> Details(int id)
         {
