@@ -16,6 +16,36 @@ namespace eTickets.Data.Services
             this.context = context;
         }
 
+        public async Task AddNewMovieAsync(NewMovieVM data)
+        {
+            var newMovie = new Movie()
+            {
+                ImageUrl = data.ImageUrl,
+                Title = data.Title,
+                Description = data.Description,
+                StartDate = data.StartDate,
+                EndDate = data.EndDate,
+                Price = data.Price,
+                Category = data.Category,
+                CinemaId = data.CinemaId,
+                ProducerId = data.ProducerId
+            };
+            await this.context.Movies.AddAsync(newMovie);
+            await this.context.SaveChangesAsync();
+
+            //Add Movie Actors
+            foreach (var actorId in data.ActorIds)
+            {
+                var newActorMovie = new Actor_Movie()
+                {
+                    MovieId = newMovie.Id,
+                    ActorId = actorId
+                };
+                await this.context.Actors_Movies.AddAsync(newActorMovie);
+            }
+            await this.context.SaveChangesAsync();
+        }
+
         public async Task<Movie> GetMovieByIdAsync(int id)
         {
             var movieDetails = await context.Movies

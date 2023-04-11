@@ -7,6 +7,7 @@
         Comedy,
         Drama,        
         Horror,
-        Thriller
+        Series,
+        Thriller,
     }
 }
