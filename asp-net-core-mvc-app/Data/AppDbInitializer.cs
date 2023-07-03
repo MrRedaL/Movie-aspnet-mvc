@@ -1,9 +1,9 @@
-﻿using eTickets.Data.Enums;
-using eTickets.Models;
+﻿using AspNetCoreMvcApp.Data.Enums;
+using AspNetCoreMvcApp.Models;
 using Microsoft.Extensions.Hosting.Internal;
 using System.Reflection;
 
-namespace eTickets.Data
+namespace AspNetCoreMvcApp.Data
 {
     public class AppDbInitializer
     {

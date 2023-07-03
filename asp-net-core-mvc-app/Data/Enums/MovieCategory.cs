@@ -1,4 +1,4 @@
-﻿namespace eTickets.Data.Enums
+﻿namespace AspNetCoreMvcApp.Data.Enums
 {
     public enum MovieCategory
     {

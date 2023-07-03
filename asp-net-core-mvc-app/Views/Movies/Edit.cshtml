@@ -1,20 +1,22 @@
-﻿@using AspNetCoreMvcApp.Data.ViewModels
-@using AspNetCoreMvcApp.Data.Enums
-@model NewMovieVM
+﻿@model NewMovieVM
+@using AspNetCoreMvcApp.Data.ViewModels;
+@using AspNetCoreMvcApp.Data.Enums;
 
 @{
-    ViewData["Title"] = "Create a new movie";
+    ViewData["Title"] = "Update movie";
 }
 
 <div class="row">
     <div class="col-md-8 offset-2">
         <p>
-            <h4>Create a new movie</h4>
+            <h4>Update movie</h4>
         </p>
+
         <div class="row">
             <div class="col-md-8 offset-2">
-                <form asp-action="Create">
+                <form asp-action="Edit">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -73,22 +75,32 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-md-4 offset-4 text-center">
                         <img width="100%" id="ImageUrlPreview" />
                     </div>
+
                     <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                        <input type="submit" value="Update" class="btn btn-outline-success float-right" />
                         <a class="btn btn-outline-secondary" asp-action="Index">Cancel</a>
                     </div>
+
                 </form>
+
             </div>
         </div>
+
     </div>
 </div>
 
 @section Scripts{
     <script>
-        $("ImageUrl").on("change", function () {
+        $(document).ready(function () {
+            var output = document.getElementById("ImageUrlPreview");
+            output.src = $("#ImageUrl").val();
+        });
+
+        $("#ImageUrl").on("change", function () {
             var output = document.getElementById("ImageUrlPreview");
             output.src = $(this).val();
         })

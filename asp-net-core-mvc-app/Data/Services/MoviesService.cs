@@ -1,11 +1,12 @@
-﻿using eTickets.Data.Base;
-using eTickets.Data.ViewModels;
-using eTickets.Models;
+﻿using AspNetCoreMvcApp.Data.Base;
+using AspNetCoreMvcApp.Data.ViewModels;
+using AspNetCoreMvcApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.IdentityModel.Tokens;
 
-namespace eTickets.Data.Services
+namespace AspNetCoreMvcApp.Data.Services
 {
     public class MoviesService : EntityBaseRepository<Movie>, IMoviesService
     {
@@ -26,7 +27,7 @@ namespace eTickets.Data.Services
                 StartDate = data.StartDate,
                 EndDate = data.EndDate,
                 Price = data.Price,
-                Category = data.Category,
+                Category = data.MovieCategory,
                 CinemaId = data.CinemaId,
                 ProducerId = data.ProducerId
             };
@@ -46,7 +47,7 @@ namespace eTickets.Data.Services
             await this.context.SaveChangesAsync();
         }
 
-        public async Task<Movie> GetMovieByIdAsync(int id)
+        public async Task<Movie> GetMovieAsync(int id)
         {
             var movieDetails = await context.Movies
                 .Include(c => c.Cinema)
@@ -67,6 +68,54 @@ namespace eTickets.Data.Services
             };
 
             return response;
+        }
+
+        public async Task UpdateMovieAsync(NewMovieVM data)
+        {
+            var dbMovie = await this.context.Movies.FirstOrDefaultAsync(n => n.Id == data.Id);
+
+            if (dbMovie != null)
+            {
+                dbMovie.Title = data.Title;
+                dbMovie.Description = data.Description;
+                dbMovie.Price = data.Price;
+                dbMovie.ImageUrl = data.ImageUrl;
+                dbMovie.CinemaId = data.CinemaId;
+                dbMovie.StartDate = data.StartDate;
+                dbMovie.EndDate = data.EndDate;
+                dbMovie.Category = data.MovieCategory;
+                dbMovie.ProducerId = data.ProducerId;
+                await this.context.SaveChangesAsync();
+            }
+
+            //Remove existing actors
+            var existingActorsDb = this.context.Actors_Movies.Where(n => n.MovieId == data.Id).ToList();
+            this.context.Actors_Movies.RemoveRange(existingActorsDb);
+            await this.context.SaveChangesAsync();
+
+            //Add Movie Actors
+            foreach (var actorId in data.ActorIds)
+            {
+                var newActorMovie = new Actor_Movie()
+                {
+                    MovieId = data.Id,
+                    ActorId = actorId
+                };
+                await this.context.Actors_Movies.AddAsync(newActorMovie);
+            }
+            await this.context.SaveChangesAsync();
+        }
+
+        public async Task DeleteMovieAsync(NewMovieVM data)
+        {
+            var dbMovie = await this.context.Movies.FirstOrDefaultAsync(n => n.Id == data.Id);
+
+            if (dbMovie != null)
+            {
+                EntityEntry entityEntry = this.context.Entry(dbMovie);
+                entityEntry.State = EntityState.Deleted;
+                await this.context.SaveChangesAsync();
+            }
         }
     }
 }

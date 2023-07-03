@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using eTickets.Data;
+using AspNetCoreMvcApp.Data;
 
 #nullable disable
 
-namespace eTickets.Migrations
+namespace AspNetCoreMvcApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20230327141454_Initial")]

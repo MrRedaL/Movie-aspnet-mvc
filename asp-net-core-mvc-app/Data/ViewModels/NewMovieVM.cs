@@ -1,10 +1,12 @@
-﻿using eTickets.Data.Enums;
+﻿using AspNetCoreMvcApp.Data.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace eTickets.Data.ViewModels
+namespace AspNetCoreMvcApp.Data.ViewModels
 {
     public class NewMovieVM
     {
+        public int Id { get; set; }
+
         [Display(Name = "Movie image")]
         [Required(ErrorMessage = "Movie image is required")]
         public string ImageUrl { get; set; }
@@ -31,7 +33,7 @@ namespace eTickets.Data.ViewModels
 
         [Display(Name = "Select a category")]
         [Required(ErrorMessage = "Movie category is required")]
-        public MovieCategory Category { get; set; }
+        public MovieCategory MovieCategory { get; set; }
 
         //Relationships
         [Display(Name = "Select actor(s)")]

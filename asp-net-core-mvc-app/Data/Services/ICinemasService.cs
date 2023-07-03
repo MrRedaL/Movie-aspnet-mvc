@@ -1,7 +1,7 @@
-﻿using eTickets.Data.Base;
-using eTickets.Models;
+﻿using AspNetCoreMvcApp.Data.Base;
+using AspNetCoreMvcApp.Models;
 
-namespace eTickets.Data.Services
+namespace AspNetCoreMvcApp.Data.Services
 {
     public interface ICinemasService : IEntityBaseRepository<Cinema>
     {

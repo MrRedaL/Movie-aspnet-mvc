@@ -1,10 +1,10 @@
-﻿using eTickets.Data;
-using eTickets.Data.Services;
-using eTickets.Models;
+﻿using AspNetCoreMvcApp.Data;
+using AspNetCoreMvcApp.Data.Services;
+using AspNetCoreMvcApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace eTickets.Controllers
+namespace AspNetCoreMvcApp.Controllers
 {
     public class ProducersController : Controller
     {

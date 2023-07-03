@@ -1,7 +1,7 @@
-﻿using eTickets.Data.Base;
+﻿using AspNetCoreMvcApp.Data.Base;
 using System.ComponentModel.DataAnnotations;
 
-namespace eTickets.Models
+namespace AspNetCoreMvcApp.Models
 {
     public class Producer : IEntityBase
     {

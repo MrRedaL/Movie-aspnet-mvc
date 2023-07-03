@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using eTickets.Data.Base;
-using eTickets.Data.Enums;
+using AspNetCoreMvcApp.Data.Base;
+using AspNetCoreMvcApp.Data.Enums;
 
-namespace eTickets.Models
+namespace AspNetCoreMvcApp.Models
 {
     public class Movie : IEntityBase
     {

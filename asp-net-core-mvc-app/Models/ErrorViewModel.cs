@@ -1,4 +1,4 @@
-namespace eTickets.Models
+namespace AspNetCoreMvcApp.Models
 {
     public class ErrorViewModel
     {

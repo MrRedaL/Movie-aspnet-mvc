@@ -1,6 +1,6 @@
-﻿using eTickets.Models;
+﻿using AspNetCoreMvcApp.Models;
 
-namespace eTickets.Data.ViewModels
+namespace AspNetCoreMvcApp.Data.ViewModels
 {
     public class NewMovieDropdownsVM
     {

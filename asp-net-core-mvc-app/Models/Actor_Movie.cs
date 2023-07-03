@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace eTickets.Models
+namespace AspNetCoreMvcApp.Models
 {
     public class Actor_Movie
     {

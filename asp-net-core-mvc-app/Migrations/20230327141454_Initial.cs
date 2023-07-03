@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace eTickets.Migrations
+namespace AspNetCoreMvcApp.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration

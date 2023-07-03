@@ -1,7 +1,7 @@
-﻿using eTickets.Models;
+﻿using AspNetCoreMvcApp.Models;
 using System.Linq.Expressions;
 
-namespace eTickets.Data.Base
+namespace AspNetCoreMvcApp.Data.Base
 {
     public interface IEntityBaseRepository<T> where T : class, IEntityBase, new()
     {

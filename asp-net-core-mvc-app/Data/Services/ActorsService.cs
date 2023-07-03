@@ -1,8 +1,8 @@
-﻿using eTickets.Data.Base;
-using eTickets.Models;
+﻿using AspNetCoreMvcApp.Data.Base;
+using AspNetCoreMvcApp.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace eTickets.Data.Services
+namespace AspNetCoreMvcApp.Data.Services
 {
     public class ActorsService : EntityBaseRepository<Actor>, IActorsService
     {
